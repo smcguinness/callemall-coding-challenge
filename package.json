@@ -7,7 +7,8 @@
     "build": "next build",
     "heroku-postbuild": "npm run build",
     "start": "node ./server",
-    "test": "jest"
+    "test:dev": "jest --watchAll --runInBand --coverage",
+    "test": "jest  --coverage"
   },
   "repository": {
     "type": "git",
