@@ -1,5 +1,5 @@
 import React from 'react';
 
-const App = () => <div>Welcome to next.js!</div>;
+const App = () => <div>Hello World!</div>;
 
 export default App;
