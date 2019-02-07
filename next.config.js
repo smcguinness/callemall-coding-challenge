@@ -7,8 +7,6 @@ const envPlugin = FRONTEND_ENV_KEYS.reduce(
   (result, key) => Object.assign({}, result, { [`process.env.${key}`]: JSON.stringify(process.env[key]) }), {} // eslint-disable-line comma-dangle
 );
 
-console.log('envPlugin', envPlugin);
-
 module.exports = {
   webpack(cfg) {
     // make selected env vars avail on client
