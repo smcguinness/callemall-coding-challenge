@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Button,
   TextField,
+  Typography,
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -73,12 +74,13 @@ class Index extends React.Component {
             Enter
           </Button>
         </div>
+        <Typography component="span" color="textSecondary">Recommended Meetups</Typography>
         {
           recommendedGroups
             .slice(0, 5)
             .map(r => (
               <Link key={r.id} as={r.urlname} href={{ pathname: '/group', query: { groupName: r.urlname } }}>
-                <a href={`/${r.urlname}`}>{r.name}</a>
+                <Typography component="a" color="textPrimary" href={`/${r.urlname}`}>{r.name}</Typography>
               </Link>
             ))
         }
