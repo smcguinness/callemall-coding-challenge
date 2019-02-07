@@ -1,5 +1,7 @@
-const { createServer } = require('http');
-const { parse } = require('url');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const express = require('express');
+const helmet = require('helmet');
 const next = require('next');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
@@ -9,20 +11,42 @@ const handle = app.getRequestHandler();
 
 app.prepare()
   .then(() => {
-    createServer((req, res) => {
-      const parsedUrl = parse(req.url, true);
-      const { pathname, query } = parsedUrl;
+    const server = express();
 
-      if (pathname === '/a') {
-        app.render(req, res, '/b', query);
-      } else if (pathname === '/b') {
-        app.render(req, res, '/a', query);
-      } else {
-        handle(req, res, parsedUrl);
-      }
-    })
-      .listen(port, (err) => {
-        if (err) throw err;
-        console.log(`> Ready on http://localhost:${port}`);
-      });
+    server.use(helmet());
+    server.use(bodyParser.urlencoded({ extended: true }));
+    server.use(cookieParser());
+    server.use(bodyParser.json());
+    server.use(bodyParser.urlencoded({ extended: true }));
+
+    server.get('/favicon.ico', (req, res) => res.sendStatus(204));
+
+    server.get('/', (req, res) => handle(req, res));
+
+    server.get('/login', (req, res) => handle(req, res));
+
+    server.get('/:groupName', (req, res) => {
+      const actualPage = '/group';
+      const queryParams = { groupName: req.params.groupName };
+      return app.render(req, res, actualPage, queryParams);
+    });
+
+    server.get('/:groupName/events/:eventId', (req, res) => {
+      const actualPage = '/event';
+      const queryParams = { groupName: req.params.groupName, eventId: req.params.eventId };
+      return app.render(req, res, actualPage, queryParams);
+    });
+
+    server.get('/:groupName/events/:eventId/rsvps', (req, res) => {
+      const actualPage = '/rsvps';
+      const queryParams = { groupName: req.params.groupName, eventId: req.params.eventId };
+      return app.render(req, res, actualPage, queryParams);
+    });
+
+    server.get('*', (req, res) => handle(req, res));
+
+    server.listen(port, (err) => {
+      if (err) throw err;
+      console.log(`> Ready on port: ${port}`); // eslint-disable-line no-console
+    });
   });
