@@ -15,7 +15,11 @@ module.exports = {
     },
   },
   plugins: ['react', 'jest'],
+  settings: {
+    'import/core-modules': ['styled-jsx', 'styled-jsx/server'],
+  },
   rules: {
     'react/jsx-filename-extension': ['error', {extensions: ['.js']}],
+    'react/forbid-prop-types': 0,
   },
 }
