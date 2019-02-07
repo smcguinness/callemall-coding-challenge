@@ -13,7 +13,7 @@ const styles = theme => ({
 
 class LoginButton extends Component {
   onLoginClick = () => {
-    window.location = 'https://secure.meetup.com/oauth2/authorize?client_id=abfekme6in3k4dfbqcfdn2d3kd&response_type=token&redirect_uri=http://localhost:3000/login';
+    window.location = `https://secure.meetup.com/oauth2/authorize?client_id=${process.env.MEETUP_APP_KEY}&response_type=token&redirect_uri=${process.env.APPLICATION_URL}login`;
   }
 
   render() {
