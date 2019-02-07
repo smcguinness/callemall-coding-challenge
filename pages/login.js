@@ -1,7 +1,8 @@
 import React from 'react';
 import queryString from 'query-string';
-
 import Router from 'next/router';
+
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import SimpleLayout from '../layout/simple';
 import LoginButton from '../components/Account/LoginButton';
@@ -13,19 +14,29 @@ class Login extends React.Component {
     return {};
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoading: true,
+    };
+  }
+
   componentDidMount = async () => {
     const hash = queryString.parse(window.location.hash);
+    this.setState({ isLoading: !!hash.access_token });
     if (hash.access_token) {
       await login(hash);
-      Router.push('/');
+      Router.replace('/');
     }
   }
 
   render() {
+    const { isLoading } = this.state;
     return (
       <SimpleLayout>
         <div style={{ padding: '25px', textAlign: 'center' }}>
-          <LoginButton />
+          {!isLoading ? <LoginButton /> : <CircularProgress /> }
         </div>
       </SimpleLayout>
     );

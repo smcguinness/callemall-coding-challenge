@@ -33,14 +33,10 @@ const SimpleLayout = ({
   </Fragment>
 );
 
-SimpleLayout.defaultProps = {
-  user: null,
-};
-
 SimpleLayout.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
-  onLogoutClick: PropTypes.func.isRequired,
+  onLogoutClick: PropTypes.func,
   user: PropTypes.object,
 };
 

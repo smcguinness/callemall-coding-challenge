@@ -62,7 +62,9 @@ const Header = ({
         </Link>
       )}
       <div className={classes.grow} />
-      { user ? <LoggedInWidget user={user} handleLogout={handleLogout} /> : <LoginButton />}
+      { user && user.id
+        ? <LoggedInWidget user={user} handleLogout={handleLogout} /> : <LoginButton />
+      }
     </Toolbar>
   </AppBar>
 );
@@ -73,7 +75,7 @@ Header.defaultProps = {
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
-  handleLogout: PropTypes.func.isRequired,
+  handleLogout: PropTypes.func,
   hideLogo: PropTypes.bool,
   user: PropTypes.object.isRequired,
 };
