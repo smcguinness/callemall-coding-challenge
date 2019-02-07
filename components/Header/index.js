@@ -77,7 +77,7 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired,
   handleLogout: PropTypes.func,
   hideLogo: PropTypes.bool,
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object,
 };
 
 export default withStyles(styles)(Header);

@@ -15,11 +15,18 @@ const styles = theme => ({
   },
 });
 
+const getAvatar = (thumbLink, name) => {
+  if (thumbLink) {
+    return <Avatar src={thumbLink} />;
+  }
+  return <Avatar>{name.charAt(0).toUpperCase()}</Avatar>;
+};
+
 const LoggedInWidget = ({ classes, user, handleLogout }) => {
-  const { name, photo: { thumb_link: thumbLink } } = user; // eslint-disable-line camelcase
+  const { name, photo: { thumb_link: thumbLink } = {} } = user; // eslint-disable-line camelcase
   return (
     <Chip
-      avatar={<Avatar src={thumbLink} />}
+      avatar={getAvatar(thumbLink, name)}
       variant="outlined"
       label={name}
       className={classes.chip}
