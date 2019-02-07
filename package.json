@@ -10,7 +10,7 @@
   "scripts": {
     "build": "next build",
     "dev": "node -r dotenv/config ./server",
-    "heroku-postbuild": "npm run build",
+    "postinstall": "npm run build",
     "start": "node ./server",
     "test:dev": "jest --watchAll --runInBand --coverage",
     "test:integrationWithWatch": "jest -c __test__/integration/jest.config.js --watch",
