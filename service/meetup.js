@@ -12,4 +12,4 @@ export const getGroupEvent = async (groupName, eventId, accessToken) => axios.ge
 
 export const getEventRsvps = async (groupName, eventId, accessToken) => axios.get(`${apiURL}${groupName}/events/${eventId}/rsvps?access_token=${accessToken}`);
 
-export const getEventAttendence = async (groupName, eventId, accessToken) => axios.get(`${apiURL}${groupName}/events/${eventId}/attendance?access_token=${accessToken}`);
+export const getEventAttendance = async (groupName, eventId, accessToken) => axios.get(`${apiURL}${groupName}/events/${eventId}/attendance?access_token=${accessToken}`);
