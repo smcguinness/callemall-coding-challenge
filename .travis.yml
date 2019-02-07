@@ -3,5 +3,7 @@ node_js:
   - "v8.12.0"
 addons:
   chrome: stable
+before_script:
+  - node ./server.js &
 script:
-  - npm start && npm test
+  - npm test

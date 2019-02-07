@@ -72,7 +72,7 @@ describe('Logout', () => {
     });
     page = await browser.newPage();
     await page.deleteCookie({ name: 'MEETUP_TRACK', domain: '.meetup.com' });
-    await page.deleteCookie({ token: 'token' });
+    await page.deleteCookie({ name: 'token' });
     await page.setViewport({ width, height });
   });
 
@@ -102,6 +102,5 @@ describe('Logout', () => {
       return { origin, pathname };
     });
     expect(`${path.origin}${path.pathname}`).toEqual('http://localhost:3000/login');
-
   }, 30000);
-})
+});
