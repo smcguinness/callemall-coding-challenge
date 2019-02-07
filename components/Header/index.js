@@ -53,7 +53,7 @@ const Header = ({
   hideLogo,
   user,
 }) => (
-  <AppBar position="static" className={classes.header}>
+  <AppBar position="fixed" color="default" className={classes.header}>
     <Toolbar style={{ minHeight: '60px' }}>
       {!hideLogo
       && (

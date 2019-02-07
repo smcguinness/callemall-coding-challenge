@@ -4,7 +4,6 @@ import Link from 'next/link';
 import moment from 'moment';
 
 import {
-  Paper,
   Table,
   TableBody,
   TableCell,
@@ -29,7 +28,8 @@ class Group extends React.Component {
 
       return { data, user };
     } catch (e) {
-      console.log('whoops', e.response);
+      context.res.writeHead(302, { Location: '/' });
+      context.res.end();
     }
     return {};
   }
@@ -38,46 +38,44 @@ class Group extends React.Component {
     const { data, user } = this.props;
     return (
       <MainLayout user={user} onLogoutClick={logout}>
-        <Paper square>
-          { data
-            ? (
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Event Name</TableCell>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Attendees</TableCell>
-                    <TableCell>Status</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody style={{ overflowY: 'scroll', height: '500px' }}>
-                  {data.map((d, i) => (
-                    <TableRow key={d.id}>
-                      <TableCell>
-                        <Link
-                          prefetch={i <= 5}
-                          as={`/${d.group.urlname}/events/${d.id}`}
-                          href={
-                            {
-                              pathname: '/event',
-                              query: { groupName: d.group.urlname, eventId: d.id },
-                            }
+        { data
+          ? (
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Event Name</TableCell>
+                  <TableCell>Date</TableCell>
+                  <TableCell>Attendees</TableCell>
+                  <TableCell>Status</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data.map((d, i) => (
+                  <TableRow key={d.id}>
+                    <TableCell>
+                      <Link
+                        prefetch={i <= 5}
+                        as={`/${d.group.urlname}/events/${d.id}`}
+                        href={
+                          {
+                            pathname: '/event',
+                            query: { groupName: d.group.urlname, eventId: d.id },
                           }
-                        >
-                          <a href={`/${d.group.urlname}/events/${d.id}`}>{d.name}</a>
-                        </Link>
-                      </TableCell>
-                      <TableCell>{moment(d.local_date).fromNow()}</TableCell>
-                      <TableCell>{d.status === 'past' ? d.yes_rsvp_count : `${d.yes_rsvp_count} / ${d.waitlist_count}` }</TableCell>
-                      <TableCell>{d.status}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            )
-            : <div>Nothing To See Here</div>
-          }
-        </Paper>
+                        }
+                      >
+                        <a href={`/${d.group.urlname}/events/${d.id}`}>{d.name}</a>
+                      </Link>
+                    </TableCell>
+                    <TableCell>{moment(d.local_date).fromNow()}</TableCell>
+                    <TableCell>{d.status === 'past' ? d.yes_rsvp_count : `${d.yes_rsvp_count} / ${d.waitlist_count}` }</TableCell>
+                    <TableCell>{d.status}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )
+          : <div>Nothing To See Here</div>
+        }
       </MainLayout>
     );
   }
