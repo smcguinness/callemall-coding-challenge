@@ -32,7 +32,7 @@ describe('Meetup', () => {
       status: 'active',
     };
     meetupApi
-      .get('/2/member/self/')
+      .get('/2/member/self')
       .query({ access_token: authToken })
       .reply(200, selfObj, { 'Access-Control-Allow-Origin': '*' });
 
@@ -134,7 +134,7 @@ describe('Meetup', () => {
       urlname: 'opensource-62',
     };
     meetupApi
-      .get(/^\S*\/events\/\S*\/rsvps$/)
+      .get('/recommended/groups')
       .query({ access_token: authToken })
       .reply(200, [recObj], { 'Access-Control-Allow-Origin': '*' });
 

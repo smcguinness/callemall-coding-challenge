@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const apiURL = 'https://api.meetup.com/';
 
-export const self = async accessToken => axios.get(`${apiURL}2/member/self/?access_token=${accessToken}`);
+export const self = async accessToken => axios.get(`${apiURL}2/member/self?access_token=${accessToken}`);
 
 export const getGroup = async (groupName, accessToken) => axios.get(`${apiURL}${groupName}/events?status=past,upcoming&access_token=${accessToken}`);
 
