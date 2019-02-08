@@ -1,6 +1,5 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-import faker from 'faker';
 import sinon from 'sinon';
 
 import Adapter from 'enzyme-adapter-react-16';
@@ -49,55 +48,3 @@ describe('LoggedInWidget', () => {
     expect(wrapper).toBeTruthy();
   });
 });
-/*
-describe('LoggedInWidget', () => {
-  let user;
-
-  beforeEach(() => {
-    user = {
-      name: faker.name.findName(),
-      photo: {
-        thumb_link: faker.image.imageUrl(),
-      },
-    };
-  });
-  it('Show a login button', () => {
-    const wrapper = mount(<LoggedInWidget user={user} handleLogout={sinon.stub()} />);
-    console.log(wrapper.html())
-    expect(wrapper.find('div').first()).toEqual(1);
-  });
-
-
-  it('simulates click events', () => {
-    // const onButtonClick = sinon.spy();
-    const wrapper = shallow(<LoginButton />);
-    wrapper.find('Button').simulate('click');
-    expect(onButtonClick).to.have.property('callCount', 1);
-  });
-});
-
-describe('LoggedInWidget Snapshots', () => {
-  let user;
-
-  beforeEach(() => {
-    user = {
-      name: 'Seth McGuinness',
-      photo: {
-        thumb_link: 'http://lorempixel.com/50/50/',
-      },
-    };
-  });
-  it('renders LoggedInWidget correctly', () => {
-    const component = renderer.create(<LoggedInWidget user={user} handleLogout={sinon.stub()} />);
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-});
-
-describe('LoginButton Snapshots', () => {
-  it('renders LoggedInWidget correctly', () => {
-    const component = renderer.create(<LoginButton />);
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-});*/
