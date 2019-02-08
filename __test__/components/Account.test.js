@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 
 import Adapter from 'enzyme-adapter-react-16';
@@ -30,21 +30,25 @@ describe('Login Button', () => {
 
 describe('LoggedInWidget', () => {
   let wrapper;
+  let user;
   beforeAll(() => {
-    const user = {
+    user = {
       name: 'Keyshawn Larson',
       photo: {
         thumb_link: 'https://s3.amazonaws.com/uifaces/faces/twitter/bereto/128.jpg',
       },
     };
+  });
+
+  it('renders correctly with a user\'s name and photo', () => {
     const handleLogout = sinon.spy();
     wrapper = shallow(<LoggedInWidget handleLogout={handleLogout} user={user} />);
-  });
-  it('renders correctly', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('renders the users name', () => {
-    expect(wrapper).toBeTruthy();
+  it('renders correctly with a user\'s name and NO photo', () => {
+    const handleLogout = sinon.spy();
+    wrapper = shallow(<LoggedInWidget handleLogout={handleLogout} user={{ name: user.name }} />);
+    expect(wrapper).toMatchSnapshot();
   });
 });
