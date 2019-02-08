@@ -13,18 +13,18 @@ import LoggedInWidget from '../../components/Account/LoggedInWidget';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('Login Button', () => {
-  // it('Show a login button', () => {
-  //   const Button = shallow(<LoginButton />);
-  //   console.log(Button);
-  // });
-  //
-  // it('simulates click events', () => {
-  //   // const onButtonClick = sinon.spy();
-  //   const wrapper = shallow(<LoginButton />);
-  //   wrapper.find('Button').simulate('click');
-  //   expect(onButtonClick).to.have.property('callCount', 1);
-  // });
+/*describe('Login Button', () => {
+  it('Show a login button', () => {
+    const Button = shallow(<LoginButton />);
+    console.log(Button);
+  });
+
+  it('simulates click events', () => {
+    // const onButtonClick = sinon.spy();
+    const wrapper = shallow(<LoginButton />);
+    wrapper.find('Button').simulate('click');
+    expect(onButtonClick).to.have.property('callCount', 1);
+  });
 });
 
 describe('LoggedInWidget', () => {
@@ -45,15 +45,15 @@ describe('LoggedInWidget', () => {
   });
 
 
-  // it('simulates click events', () => {
-  //   // const onButtonClick = sinon.spy();
-  //   const wrapper = shallow(<LoginButton />);
-  //   wrapper.find('Button').simulate('click');
-  //   expect(onButtonClick).to.have.property('callCount', 1);
-  // });
+  it('simulates click events', () => {
+    // const onButtonClick = sinon.spy();
+    const wrapper = shallow(<LoginButton />);
+    wrapper.find('Button').simulate('click');
+    expect(onButtonClick).to.have.property('callCount', 1);
+  });
 });
 
-/*describe('LoggedInWidget Snapshots', () => {
+describe('LoggedInWidget Snapshots', () => {
   let user;
 
   beforeEach(() => {
