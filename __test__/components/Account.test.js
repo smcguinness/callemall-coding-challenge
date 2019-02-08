@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, { mount, shallow } from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
 import sinon from 'sinon';
 
 import Adapter from 'enzyme-adapter-react-16';
