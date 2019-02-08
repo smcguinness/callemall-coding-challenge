@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoggedInWidget renders correctly 1`] = `
+<LoggedInWidget
+  classes={
+    Object {
+      "chip": "LoggedInWidget-chip-3",
+      "root": "LoggedInWidget-root-2",
+    }
+  }
+  handleLogout={[Function]}
+  user={
+    Object {
+      "name": "Keyshawn Larson",
+      "photo": Object {
+        "thumb_link": "https://s3.amazonaws.com/uifaces/faces/twitter/bereto/128.jpg",
+      },
+    }
+  }
+/>
+`;
+
+exports[`Login Button renders correctly 1`] = `
+<LoginButton
+  classes={
+    Object {
+      "buttonIcon": "LoginButton-buttonIcon-1",
+    }
+  }
+/>
+`;
