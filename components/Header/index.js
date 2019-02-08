@@ -21,29 +21,8 @@ const styles = theme => ({
     background: '#ffffff',
     color: '#4b4a4b',
   },
-  logoContainer: {
-    display: 'flex',
-  },
-  logo: {
-    width: '200px',
-    [theme.breakpoints.down('sm')]: {
-      width: '175px',
-    },
-  },
   grow: {
     flexGrow: 1,
-  },
-  desktopNav: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'flex',
-    },
-  },
-  mobileNav: {
-    display: 'flex',
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
   },
 });
 

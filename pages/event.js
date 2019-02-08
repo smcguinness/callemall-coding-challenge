@@ -1,7 +1,6 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 import { withStyles } from '@material-ui/core/styles';
 
 import {
@@ -11,9 +10,6 @@ import {
   ListSubheader,
   Typography,
 } from '@material-ui/core';
-
-
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import MainLayout from '../layout/main';
 
@@ -85,13 +81,13 @@ class Event extends React.Component {
               <ListItem alignItems="flex-start" key={d.member.id}>
                 <ListItemText
                   primary={d.member.name}
-                  secondary={
+                  secondary={(
                     <React.Fragment>
                       <Typography component="span" className={classes.inline} color="textSecondary">
                         {d.response}
                       </Typography>
                     </React.Fragment>
-                  }
+                  )}
                 />
               </ListItem>
             ))}
@@ -99,13 +95,13 @@ class Event extends React.Component {
               <ListItem alignItems="flex-start" key={d.member.id}>
                 <ListItemText
                   primary={d.member.name}
-                  secondary={
+                  secondary={(
                     <React.Fragment>
                       <Typography component="span" className={classes.inline} color="textSecondary">
                         {d.response}
                       </Typography>
                     </React.Fragment>
-                  }
+                  )}
                 />
               </ListItem>
             ))}
@@ -113,13 +109,13 @@ class Event extends React.Component {
               <ListItem alignItems="flex-start" key={d.member.id}>
                 <ListItemText
                   primary={d.member.name}
-                  secondary={
+                  secondary={(
                     <React.Fragment>
                       <Typography component="span" className={classes.inline} color="textSecondary">
                         {d.response}
                       </Typography>
                     </React.Fragment>
-                  }
+                  )}
                 />
               </ListItem>
             ))}

@@ -89,7 +89,13 @@ class Index extends React.Component {
   }
 }
 
+Index.defaultProps = {
+  recommendedGroups: [],
+};
+
 Index.propTypes = {
+  classes: PropTypes.object.isRequired,
+  recommendedGroups: PropTypes.array,
   user: PropTypes.object.isRequired,
 };
 
