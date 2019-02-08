@@ -14,10 +14,12 @@
     "start": "node ./server",
     "test:dev": "jest --watchAll --runInBand --coverage",
     "test:integrationWithWatch": "jest -c __test__/integration/jest.config.js --watch",
-    "test": "jest  --coverage"
+    "test": "jest && codecov"
   },
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "snapshotSerializers": ["enzyme-to-json/serializer"],
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   },
   "repository": {
     "type": "git",
