@@ -5,6 +5,11 @@ import { CssBaseline, Paper } from '@material-ui/core';
 import Header from '../components/Header';
 
 const styles = theme => ({
+  '@global': {
+    body: {
+      overflowY: 'hidden',
+    },
+  },
   root: {
     display: 'flex',
     ...theme.mixins.gutters(),
