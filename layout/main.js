@@ -18,7 +18,7 @@ const styles = theme => ({
     height: 'calc(100vh - 125px)',
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
-    overflowY: '',
+    overflowY: 'scroll',
   },
 });
 
