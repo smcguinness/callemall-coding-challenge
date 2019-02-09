@@ -1,6 +1,7 @@
 # RSVP - Call-Em-All Coding Challenge
 ![Build Status](https://img.shields.io/travis/smcguinness/callemall-coding-challenge/master.svg?logo=travis&logoColor=white&style=flat)
 ![Code Coverage](https://img.shields.io/codecov/c/github/smcguinness/callemall-coding-challenge/master.svg?logo=codecov&logoColor=white&style=flat)
+
 View a [live demo](https://staging-cea-coding-challenge.herokuapp.com/)
 
 ## Master Branch
