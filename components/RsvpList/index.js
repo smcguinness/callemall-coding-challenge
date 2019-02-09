@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import pluralize from 'pluralize';
 
 import {
   List,
@@ -7,6 +8,7 @@ import {
   ListItemSecondaryAction,
   ListItemText,
   ListSubheader,
+  Tooltip,
   Typography,
 } from '@material-ui/core';
 
@@ -24,29 +26,24 @@ const styles = () => ({
 
 const getResponseIcon = ({ guests, response }) => {
   if (response !== 'no') {
-    const color = (response === 'yes' ? 'green' : 'yellow');
+    const color = (response === 'yes' ? 'green' : 'grey');
     if (guests > 0) {
-      return <DoneAllIcon fill={color} />;
+      return (
+        <Tooltip title={pluralize('guest', guests, true)}>
+          <DoneAllIcon style={{ color }} />
+        </Tooltip>
+      );
     }
-    return <DoneIcon fill={color} />;
+    return <DoneIcon style={{ color }} />;
   }
-  return <CloseIcon fill="red" />;
+  return <CloseIcon style={{ color: 'red' }} />;
 };
 
-const renderRSVPItem = (rsvp, { member: { id, name }, response }) => (
+const renderRSVPItem = ({ guests, member: { id, name }, response }) => (
   <ListItem alignItems="flex-start" key={id}>
-    <ListItemText
-      primary={name}
-      secondary={(
-        <React.Fragment>
-          <Typography component="span" color="textSecondary">
-            {response}
-          </Typography>
-        </React.Fragment>
-      )}
-    />
+    <ListItemText primary={name} />
     <ListItemSecondaryAction>
-      {getResponseIcon(rsvp)}
+      {getResponseIcon({ guests, response })}
     </ListItemSecondaryAction>
   </ListItem>
 );
@@ -57,34 +54,8 @@ const RsvpList = ({ classes, rsvps }) => (
     subheader={<ListSubheader className={classes.subheader} component="div">Event Attendees</ListSubheader>}
   >
     {rsvps.filter(d => d.response === 'yes').map(d => renderRSVPItem(d))}
-    {rsvps.filter(d => d.response === 'waitlist').map(d => (
-      <ListItem alignItems="flex-start" key={d.member.id}>
-        <ListItemText
-          primary={d.member.name}
-          secondary={(
-            <React.Fragment>
-              <Typography component="span" className={classes.inline} color="textSecondary">
-                {d.response}
-              </Typography>
-            </React.Fragment>
-          )}
-        />
-      </ListItem>
-    ))}
-    {rsvps.filter(d => d.response === 'no').map(d => (
-      <ListItem alignItems="flex-start" key={d.member.id}>
-        <ListItemText
-          primary={d.member.name}
-          secondary={(
-            <React.Fragment>
-              <Typography component="span" className={classes.inline} color="textSecondary">
-                {d.response}
-              </Typography>
-            </React.Fragment>
-          )}
-        />
-      </ListItem>
-    ))}
+    {rsvps.filter(d => d.response === 'waitlist').map(d => renderRSVPItem(d))}
+    {rsvps.filter(d => d.response === 'no').map(d => renderRSVPItem(d))}
   </List>
 );
 

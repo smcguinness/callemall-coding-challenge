@@ -9,7 +9,7 @@ import RSVPList from '../components/RsvpList';
 import auth, { logout } from '../auth';
 import { getGroupEvent, getEventRsvps } from '../service/meetup';
 
-const drawerWidth = 250;
+const drawerWidth = 275;
 
 const styles = theme => ({
   root: {
@@ -20,6 +20,7 @@ const styles = theme => ({
     flexShrink: 0,
     overflowY: 'scroll',
     marginLeft: '-25px',
+    paddingRight: '10px',
   },
   subheader: {
     backgroundColor: '#ffffff',
