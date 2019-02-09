@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RSVP Item renders correctly 1`] = `
+<WithStyles(ListItem)
+  alignItems="flex-start"
+  key="12345"
+>
+  <WithStyles(ListItemText)
+    primary="John Smith"
+  />
+  <WithStyles(ListItemSecondaryAction)>
+    <ResponseIcon
+      guests={1}
+      response="yes"
+    />
+  </WithStyles(ListItemSecondaryAction)>
+</WithStyles(ListItem)>
+`;
+
+exports[`RSVP List renders correctly 1`] = `
+<RsvpList
+  classes={
+    Object {
+      "subheader": "RsvpList-subheader-1",
+    }
+  }
+  rsvps={Array []}
+/>
+`;
+
+exports[`Response Icon renders correctly 1`] = `
+<pure(CloseIcon)
+  style={
+    Object {
+      "color": "red",
+    }
+  }
+/>
+`;
