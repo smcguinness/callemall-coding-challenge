@@ -21,9 +21,9 @@ const RsvpList = ({ classes, rsvps }) => (
     className={classes.list}
     subheader={<ListSubheader className={classes.subheader} component="div">Event Attendees</ListSubheader>}
   >
-    {rsvps.filter(d => d.response === 'yes').map(d => <RSVPItem {...d} />)}
-    {rsvps.filter(d => d.response === 'waitlist').map(d => <RSVPItem {...d} />)}
-    {rsvps.filter(d => d.response === 'no').map(d => <RSVPItem {...d} />)}
+    {rsvps.filter(d => d.response === 'yes').map(d => <RSVPItem key={d.id} {...d} />)}
+    {rsvps.filter(d => d.response === 'waitlist').map(d => <RSVPItem key={d.id} {...d} />)}
+    {rsvps.filter(d => d.response === 'no').map(d => <RSVPItem key={d.id} {...d} />)}
   </List>
 );
 
