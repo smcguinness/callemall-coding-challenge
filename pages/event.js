@@ -3,15 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import {
-  List,
-  ListItem,
-  ListItemText,
-  ListSubheader,
-  Typography,
-} from '@material-ui/core';
-
 import MainLayout from '../layout/main';
+import RSVPList from '../components/RsvpList';
 
 import auth, { logout } from '../auth';
 import { getGroupEvent, getEventRsvps } from '../service/meetup';
@@ -73,53 +66,7 @@ class Event extends React.Component {
     return (
       <MainLayout user={user} onLogoutClick={logout}>
         <div className={classes.drawer}>
-          <List
-            className={classes.list}
-            subheader={<ListSubheader className={classes.subheader} component="div">Event Attendees</ListSubheader>}
-          >
-            {rsvps.filter(d => d.response === 'yes').map(d => (
-              <ListItem alignItems="flex-start" key={d.member.id}>
-                <ListItemText
-                  primary={d.member.name}
-                  secondary={(
-                    <React.Fragment>
-                      <Typography component="span" className={classes.inline} color="textSecondary">
-                        {d.response}
-                      </Typography>
-                    </React.Fragment>
-                  )}
-                />
-              </ListItem>
-            ))}
-            {rsvps.filter(d => d.response === 'waitlist').map(d => (
-              <ListItem alignItems="flex-start" key={d.member.id}>
-                <ListItemText
-                  primary={d.member.name}
-                  secondary={(
-                    <React.Fragment>
-                      <Typography component="span" className={classes.inline} color="textSecondary">
-                        {d.response}
-                      </Typography>
-                    </React.Fragment>
-                  )}
-                />
-              </ListItem>
-            ))}
-            {rsvps.filter(d => d.response === 'no').map(d => (
-              <ListItem alignItems="flex-start" key={d.member.id}>
-                <ListItemText
-                  primary={d.member.name}
-                  secondary={(
-                    <React.Fragment>
-                      <Typography component="span" className={classes.inline} color="textSecondary">
-                        {d.response}
-                      </Typography>
-                    </React.Fragment>
-                  )}
-                />
-              </ListItem>
-            ))}
-          </List>
+          <RSVPList rsvps={rsvps} />
         </div>
         <div className={classes.content}>
           <div dangerouslySetInnerHTML={{ __html: event.description }} />

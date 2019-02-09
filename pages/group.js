@@ -28,8 +28,10 @@ class Group extends React.Component {
 
       return { data, user };
     } catch (e) {
-      context.res.writeHead(302, { Location: '/' });
-      context.res.end();
+      if (!process.browser) {
+        context.res.writeHead(302, { Location: '/' });
+        context.res.end();
+      }
     }
     return {};
   }
