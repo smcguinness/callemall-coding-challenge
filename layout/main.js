@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { cloneElement, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { CssBaseline, Paper } from '@material-ui/core';
@@ -25,24 +25,30 @@ const styles = theme => ({
 const MainLayout = ({
   children,
   classes,
+  component,
   onLogoutClick,
   user,
-}) => (
-  <Fragment>
-    <CssBaseline />
-    <Header user={user} handleLogout={onLogoutClick} />
-    <Paper className={classes.root}>
-      {children}
-    </Paper>
-  </Fragment>
-);
+}) => {
+  const Component = component || Paper;
+  return (
+    <Fragment>
+      <CssBaseline />
+      <Header user={user} handleLogout={onLogoutClick} />
+      <Component className={classes.root}>
+        {children}
+      </Component>
+    </Fragment>
+  );
+};
 
 MainLayout.defaultProps = {
+  component: Paper,
   user: {},
 };
 
 MainLayout.propTypes = {
   children: PropTypes.node.isRequired,
+  component: PropTypes.string,
   classes: PropTypes.object.isRequired,
   onLogoutClick: PropTypes.func.isRequired,
   user: PropTypes.object,
