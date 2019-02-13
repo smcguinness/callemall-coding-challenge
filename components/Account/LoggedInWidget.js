@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Avatar, Chip, Tooltip } from '@material-ui/core';
+import { Chip, Tooltip } from '@material-ui/core';
 import PowerIcon from '@material-ui/icons/PowerSettingsNew';
 import { withStyles } from '@material-ui/core/styles';
+
+import Avatar from './Avatar';
 
 const styles = theme => ({
   root: {
@@ -15,18 +17,11 @@ const styles = theme => ({
   },
 });
 
-const getAvatar = (thumbLink, name) => {
-  if (thumbLink) {
-    return <Avatar src={thumbLink} />;
-  }
-  return <Avatar>{name.charAt(0).toUpperCase()}</Avatar>;
-};
-
 const LoggedInWidget = ({ classes, user, handleLogout }) => {
   const { name, photo: { thumb_link: thumbLink } = {} } = user; // eslint-disable-line camelcase
   return (
     <Chip
-      avatar={getAvatar(thumbLink, name)}
+      avatar={<Avatar src={thumbLink} value={name} />}
       variant="outlined"
       label={name}
       className={classes.chip}

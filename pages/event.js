@@ -2,6 +2,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import {
+  AppBar,
+  Button,
+  Toolbar,
+  Typography,
+} from '@material-ui/core';
 
 import MainLayout from '../layout/main';
 import RSVPList from '../components/RsvpList';
@@ -9,7 +15,7 @@ import RSVPList from '../components/RsvpList';
 import auth, { logout } from '../auth';
 import { getGroupEvent, getEventRsvps } from '../service/meetup';
 
-const drawerWidth = 275;
+const drawerWidth = 350;
 
 const styles = theme => ({
   root: {
@@ -20,21 +26,24 @@ const styles = theme => ({
     flexShrink: 0,
     overflowY: 'scroll',
     marginLeft: '-25px',
-    paddingRight: '10px',
+    padding: '20px',
   },
   subheader: {
     backgroundColor: '#ffffff',
   },
   content: {
     flexGrow: 1,
-    flexBasis: '66%',
+    flexBasis: '50%',
     padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 4}px`,
-    fontSize: theme.typography.pxToRem(16),
+    fontSize: theme.typography.pxToRem(14),
     color: 'rgba(0, 0, 0, 0.87)',
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     fontWeight: 400,
     lineHeight: 1.5,
     overflowY: 'scroll',
+  },
+  grow: {
+    flexGrow: 1,
   },
 });
 
@@ -63,14 +72,21 @@ class Event extends React.Component {
       rsvps,
       user,
     } = this.props;
-
     return (
-      <MainLayout user={user} onLogoutClick={logout}>
+      <MainLayout component="div" user={user} onLogoutClick={logout}>
         <div className={classes.drawer}>
-          <RSVPList rsvps={rsvps} />
+          <Typography component="h1" variant="h5" gutterBottom>{event.name}</Typography>
+          <div
+            dangerouslySetInnerHTML={{ __html: event.description }}
+          />
         </div>
         <div className={classes.content}>
-          <div dangerouslySetInnerHTML={{ __html: event.description }} />
+          <AppBar position="static" color="default">
+            <Toolbar className={classes.grow}>
+              <Button color="inherit">Login</Button>
+            </Toolbar>
+          </AppBar>
+          <RSVPList rsvps={rsvps} />
         </div>
       </MainLayout>
     );
