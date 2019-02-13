@@ -21,7 +21,7 @@ exports[`RSVP List renders correctly 1`] = `
 <RsvpList
   classes={
     Object {
-      "subheader": "RsvpList-subheader-1",
+      "card": "RsvpList-card-1",
     }
   }
   rsvps={Array []}
